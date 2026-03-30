@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bl3vfqypnnx28"]
+
+[ext_resource type="PackedScene" uid="uid://ddc615h2c8uws" path="res://resources/models/ground1.blend" id="1_kpphs"]
+[ext_resource type="PackedScene" uid="uid://yehsxdqu2x65" path="res://resources/models/ground.blend" id="2_ha2b7"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_wrs7q"]
+points = PackedVector3Array(-3, -0.5, -3, -3, 0.5, -3, 3, -0.5, -3, -3, -0.5, 3, 3, 0.5, -3, 3, -0.5, 3)
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_f25cv"]
+points = PackedVector3Array(-3, -0.5, -3, -3, -0.5, 3, -3, 0.5, -3, 3, -0.5, -3, -3, 0.5, 3, 3, -0.5, 3, 3, 0.5, -3, 3, 0.5, 3)
+
+[node name="MeshInstance3D" type="MeshInstance3D" unique_id=1698634178]
+
+[node name="ground1" parent="." unique_id=753393608 instance=ExtResource("1_kpphs")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.27735, 0, -0.212485)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ground1/slantground" index="0" unique_id=1766607312]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground1/slantground/StaticBody3D" unique_id=1861244448]
+shape = SubResource("ConvexPolygonShape3D_wrs7q")
+
+[node name="ground" parent="." unique_id=2021104358 instance=ExtResource("2_ha2b7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30722, 0, -0.183503)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="ground/flatground" index="0" unique_id=939378784]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ground/flatground/StaticBody3D" unique_id=10094739]
+shape = SubResource("ConvexPolygonShape3D_f25cv")
+
+[editable path="ground1"]
+[editable path="ground"]

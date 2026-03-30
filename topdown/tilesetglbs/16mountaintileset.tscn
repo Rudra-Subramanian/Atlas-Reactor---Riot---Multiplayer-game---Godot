@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://dhc632h8go2h0"]
+
+[ext_resource type="PackedScene" uid="uid://ddgwqhqboui0p" path="res://tilesetglbs/mountain16/alltiles.glb" id="1_xtm2u"]
+
+[node name="Node3D" type="Node3D" unique_id=1675129394]
+
+[node name="alltiles" parent="." unique_id=933227316 instance=ExtResource("1_xtm2u")]

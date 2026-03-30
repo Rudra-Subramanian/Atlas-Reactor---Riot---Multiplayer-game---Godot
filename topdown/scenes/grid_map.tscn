@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c1kofsblih17o"]
+
+[ext_resource type="MeshLibrary" uid="uid://dagqubir8rrcd" path="res://resources/gridmap templates/groundlibrary2.tres" id="1_lq4m8"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_gc0wv"]
+
+[node name="GridMap" type="GridMap"]
+mesh_library = ExtResource("1_lq4m8")
+physics_material = SubResource("PhysicsMaterial_gc0wv")

@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://bbahumvabs2t1"]
+
+[ext_resource type="Script" uid="uid://dqu06ed7gvb7c" path="res://scripts/character_ui_scene.gd" id="1_n0c2n"]
+
+[node name="Control" type="Control" unique_id=674102939]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("1_n0c2n")
+
+[node name="bottom character" type="HBoxContainer" parent="." unique_id=1324925242]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.87100005
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -2.0
+offset_top = 0.3199463
+offset_right = 2.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="character1" type="Button" parent="bottom character" unique_id=1476112691]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "Astra"
+
+[node name="free cam" type="Button" parent="bottom character" unique_id=1518355258]
+layout_mode = 2
+theme_override_font_sizes/font_size = 90
+text = "free cam
+"
+
+[node name="actions" type="VBoxContainer" parent="." unique_id=884205986]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.11100001
+anchor_right = 0.079
+anchor_bottom = 0.86500007
+offset_top = 0.11998749
+offset_right = 8.319992
+offset_bottom = -0.20007324
+alignment = 1
+
+[node name="action_sprint" type="Button" parent="actions" unique_id=146844299]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Sprint
+"
+
+[node name="action_walk" type="Button" parent="actions" unique_id=145014871]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Walk
+"
+
+[node name="Turn end actions" type="VBoxContainer" parent="." unique_id=361430654]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.89300007
+anchor_top = 0.11100001
+anchor_right = 0.9990001
+anchor_bottom = 0.86500007
+offset_left = 0.43981934
+offset_top = 0.11998749
+offset_right = -0.080078125
+offset_bottom = -0.20007324
+alignment = 2
+
+[node name="confirm button" type="Button" parent="Turn end actions" unique_id=91170912]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Confirm
+"
+
+[node name="skip button" type="Button" parent="Turn end actions" unique_id=878950784]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Skip
+"
+
+[connection signal="pressed" from="Turn end actions/confirm button" to="." method="_confirm_button_pressed"]
