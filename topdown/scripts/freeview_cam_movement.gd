@@ -134,3 +134,13 @@ func _process(_delta: float) -> void:
 		var character_z = astra.position.z
 		position = Vector3(character_x, current_y, character_z)
 		return
+
+
+func _on_free_cam_pressed() -> void:
+	tracking_character = false
+	return
+
+
+func _on_character_1_pressed() -> void:
+	start_tracking_character()
+	return

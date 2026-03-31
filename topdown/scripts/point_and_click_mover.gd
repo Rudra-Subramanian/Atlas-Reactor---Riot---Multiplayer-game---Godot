@@ -128,3 +128,7 @@ func is_position_within_distance(target_pos: Vector3, distance: float) -> bool:
 func _on_control_move_characters() -> void:
 	StartMovement()
 	return
+
+
+func _on_character_1_pressed() -> void:
+	pass # Replace with function body.

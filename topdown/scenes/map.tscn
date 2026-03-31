@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://7blkadwvf8oy" path="res://scenes/submap.tscn" id="2_0cso3"]
 [ext_resource type="PackedScene" uid="uid://dtugj213lyq3d" path="res://scenes/astra_puck.tscn" id="3_2klcf"]
 [ext_resource type="PackedScene" uid="uid://bbahumvabs2t1" path="res://scenes/character_ui_scene.tscn" id="4_0cso3"]
-[ext_resource type="Script" uid="uid://bchknmhc3c1oo" path="res://scenes/movement_decal.gd" id="6_nakos"]
+[ext_resource type="Script" uid="uid://bchknmhc3c1oo" path="res://scripts/movement_decal.gd" id="6_nakos"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_e0an3"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -18,10 +18,6 @@ sky_material = SubResource("ProceduralSkyMaterial_e0an3")
 background_mode = 2
 sky = SubResource("Sky_p5pve")
 tonemap_mode = 2
-
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_2klcf"]
-height = 3.0
-radius = 15.0
 
 [node name="Node3D" type="Node3D" unique_id=491007982]
 
@@ -42,19 +38,16 @@ visible = false
 [node name="astra" parent="." unique_id=2081025706 instance=ExtResource("3_2klcf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53411, 0.000728011, 5.85717)
 
-[node name="Control" parent="." unique_id=674102939 instance=ExtResource("4_0cso3")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=365545472]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.488272, -0.83388495, 11.089235)
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="astra" unique_id=365545472]
 skeleton = NodePath("")
 script = ExtResource("6_nakos")
 
-[node name="ShapeCast3D" type="ShapeCast3D" parent="MeshInstance3D" unique_id=124391810]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.368275, 3.3091946, -5.6037846)
-shape = SubResource("CylinderShape3D_2klcf")
-collide_with_areas = true
+[node name="Control" parent="." unique_id=674102939 instance=ExtResource("4_0cso3")]
 
 [connection signal="move_characters" from="Control" to="astra" method="_on_control_move_characters"]
+[connection signal="pressed" from="Control/bottom character/character1" to="freeview_cam" method="_on_character_1_pressed"]
 [connection signal="pressed" from="Control/bottom character/character1" to="astra" method="_on_character_1_pressed"]
+[connection signal="pressed" from="Control/bottom character/free cam" to="freeview_cam" method="_on_free_cam_pressed"]
 
+[editable path="NavigationRegion3D"]
 [editable path="Control"]
