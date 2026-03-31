@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://5ajcfwnrac6l"]
 
-[ext_resource type="Script" uid="uid://dqp8foequs2g2" path="res://scripts/character_body_3d.gd" id="1_glpr6"]
+[ext_resource type="Script" uid="uid://dqp8foequs2g2" path="res://scripts/old_scripts/character_body_3d.gd" id="1_glpr6"]
+
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjt0s"]
 emission_enabled = true

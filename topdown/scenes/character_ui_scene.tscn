@@ -28,12 +28,10 @@ theme_override_constants/separation = 20
 
 [node name="character1" type="Button" parent="bottom character" unique_id=1476112691]
 layout_mode = 2
-theme_override_font_sizes/font_size = 90
-text = "Astra"
+text = "character 1"
 
 [node name="free cam" type="Button" parent="bottom character" unique_id=1518355258]
 layout_mode = 2
-theme_override_font_sizes/font_size = 90
 text = "free cam
 "
 
@@ -50,15 +48,29 @@ alignment = 1
 
 [node name="action_sprint" type="Button" parent="actions" unique_id=146844299]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
 text = "Sprint
 "
 
 [node name="action_walk" type="Button" parent="actions" unique_id=145014871]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
 text = "Walk
 "
+
+[node name="ability 1" type="Button" parent="actions" unique_id=1732206001]
+layout_mode = 2
+text = "Ability 1"
+
+[node name="ability 2" type="Button" parent="actions" unique_id=1356798282]
+layout_mode = 2
+text = "Ability 2"
+
+[node name="ability 3" type="Button" parent="actions" unique_id=1619418162]
+layout_mode = 2
+text = "Ability 3"
+
+[node name="ability 4" type="Button" parent="actions" unique_id=1556694353]
+layout_mode = 2
+text = "Ultimate"
 
 [node name="Turn end actions" type="VBoxContainer" parent="." unique_id=361430654]
 layout_mode = 1
@@ -75,13 +87,11 @@ alignment = 2
 
 [node name="confirm button" type="Button" parent="Turn end actions" unique_id=91170912]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
 text = "Confirm
 "
 
 [node name="skip button" type="Button" parent="Turn end actions" unique_id=878950784]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
 text = "Skip
 "
 

@@ -107,10 +107,16 @@ func set_is_moving(value: bool) -> void:
 	elif value == is_moving:
 		is_moving = value
 		
+func handle_ended_movement(name, bool_value) -> void:
+	if bool_value:
+		navigation_agent_3d.set_target_position(position)
+	return
+	
 
 
 func _ready() -> void:
 	move_navigation_to_target(position)
+	movement_finished.connect(handle_ended_movement)
 	return
 
 func is_position_within_distance(target_pos: Vector3, distance: float) -> bool:
