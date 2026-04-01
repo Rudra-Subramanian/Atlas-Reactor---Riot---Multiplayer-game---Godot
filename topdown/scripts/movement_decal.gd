@@ -22,7 +22,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			circle.queue_free()
 		circles.clear()
 		self.mesh = null
-		var  points = get_bounding_pointsfunc()
+		var  points = get_bounding_pointsfunc(global_position)
 		draw_better_mesh(points, global_position)
 	return	
 
@@ -31,7 +31,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 
-func get_bounding_pointsfunc() -> Array[Vector3]:
+func get_bounding_pointsfunc(center_position) -> Array[Vector3]:
 	var hit_points: Array[Vector3] = []
 	var parent = get_parent()
 	var space_state = get_world_3d().direct_space_state
@@ -39,7 +39,7 @@ func get_bounding_pointsfunc() -> Array[Vector3]:
 	var angle_step = (PI * 2.0) / ray_count
 
 	for i in range(ray_count):
-		var hit_position = check_if_point_is_valid(i, angle_step, space_state, radius)
+		var hit_position = check_if_point_is_valid(i, angle_step, space_state, radius, center_position)
 		# 1. Calculate the X and Z position on the circle's edge
 		
 		if hit_position:
@@ -48,7 +48,7 @@ func get_bounding_pointsfunc() -> Array[Vector3]:
 			
 	return hit_points
 
-func check_if_point_is_valid(i, angle_step, space_state, distance_from_center):
+func check_if_point_is_valid(i, angle_step, space_state, distance_from_center, center_position):
 			# 1. Calculate the X and Z position on the circle's edge
 		var current_angle = i * angle_step
 		var x = cos(current_angle) * distance_from_center
@@ -56,7 +56,7 @@ func check_if_point_is_valid(i, angle_step, space_state, distance_from_center):
 		
 		# 2. Define the ray start (at height 10) and end (sweeping down)
 		# We start relative to the character's current global position
-		var ray_start = global_position + Vector3(x, start_height, z)
+		var ray_start = center_position + Vector3(x, start_height, z)
 		var ray_end = ray_start + Vector3(0, -cast_distance, 0)
 		
 		# 3. Create and run the raycast
@@ -70,7 +70,7 @@ func check_if_point_is_valid(i, angle_step, space_state, distance_from_center):
 			#print('\n\npat  h to the found point is %s \n final position is: %s' % [path_to_point, result.position])
 			var length_to_path = get_length_of_path(path_to_point, result.position)
 			if length_to_path > 20:
-				return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2)
+				return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2, center_position)
 			print('path length %s' % [length_to_path])
 			result.position.y += 0.2
 			#print(result.position)
@@ -84,7 +84,7 @@ func check_if_point_is_valid(i, angle_step, space_state, distance_from_center):
 			circles.append(dot)
 			return result
 		elif distance_from_center > 0.2:
-			return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2)
+			return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2, center_position)
 		else:
 			return result
 

@@ -30,6 +30,22 @@ theme_override_constants/separation = 20
 layout_mode = 2
 text = "character 1"
 
+[node name="character2" type="Button" parent="bottom character" unique_id=467574345]
+layout_mode = 2
+text = "character 2"
+
+[node name="character3" type="Button" parent="bottom character" unique_id=997735489]
+layout_mode = 2
+text = "character 3"
+
+[node name="character4" type="Button" parent="bottom character" unique_id=987203655]
+layout_mode = 2
+text = "character 4"
+
+[node name="character5" type="Button" parent="bottom character" unique_id=2019364051]
+layout_mode = 2
+text = "character 5"
+
 [node name="free cam" type="Button" parent="bottom character" unique_id=1518355258]
 layout_mode = 2
 text = "free cam
@@ -56,6 +72,11 @@ layout_mode = 2
 text = "Walk
 "
 
+[node name="action_walk2" type="Button" parent="actions" unique_id=52885662]
+layout_mode = 2
+text = "Sneak
+"
+
 [node name="ability 1" type="Button" parent="actions" unique_id=1732206001]
 layout_mode = 2
 text = "Ability 1"
@@ -71,6 +92,14 @@ text = "Ability 3"
 [node name="ability 4" type="Button" parent="actions" unique_id=1556694353]
 layout_mode = 2
 text = "Ultimate"
+
+[node name="ability 5" type="Button" parent="actions" unique_id=673763168]
+layout_mode = 2
+text = "Peek"
+
+[node name="ability 6" type="Button" parent="actions" unique_id=1154241581]
+layout_mode = 2
+text = "Hold"
 
 [node name="Turn end actions" type="VBoxContainer" parent="." unique_id=361430654]
 layout_mode = 1

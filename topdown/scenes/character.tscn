@@ -1,7 +1,6 @@
 [gd_scene format=3 uid="uid://5ajcfwnrac6l"]
 
-[ext_resource type="Script" uid="uid://dqp8foequs2g2" path="res://scripts/old_scripts/character_body_3d.gd" id="1_glpr6"]
-
+[ext_resource type="Script" uid="uid://b0miy715grpmx" path="res://scripts/point_and_click_mover.gd" id="1_agfs1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjt0s"]
 emission_enabled = true
@@ -15,16 +14,13 @@ material = SubResource("StandardMaterial3D_pjt0s")
 height = 0.262207
 radius = 0.611816
 
-[node name="CharacterBody3D" type="CharacterBody3D"]
-script = ExtResource("1_glpr6")
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=793791712]
+script = ExtResource("1_agfs1")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=833781340]
 transform = Transform3D(1.2, 0, 0, 0, 0.135, 0, 0, 0, 1.2, 0, 0.126738, 0)
 mesh = SubResource("CylinderMesh_wa5vi")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=55133010]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.135498, 0)
 shape = SubResource("CylinderShape3D_wfnr8")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 2.43, 0)

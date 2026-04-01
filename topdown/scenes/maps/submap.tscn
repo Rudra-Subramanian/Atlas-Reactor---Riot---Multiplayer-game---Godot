@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://7blkadwvf8oy"]
+
+[ext_resource type="MeshLibrary" uid="uid://bljyivote0mnc" path="res://resources/gridmap templates/doubleheightgroundlibraryslant.tres" id="1_jxdrg"]
+[ext_resource type="Script" uid="uid://w2fdqu0nsru2" path="res://scripts/old_scripts/grid_map.gd" id="2_jomr5"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_e0an3"]
+vertices = PackedVector3Array(-8, -0.39999998, -1.25, -4, -0.39999998, -1.25, -4, -0.39999998, -3.25, -3.25, -0.39999998, -4, -1.25, -0.39999998, -4, -1.25, -0.39999998, -8, -8, -0.39999998, -8, 1.25, -0.39999998, -3.25, 1.25, -0.39999998, -1, 3.5, -0.39999998, -1, 4.25, -0.39999998, -0.25, 4.25, -0.39999998, 1.5, 8, -0.39999998, 1.5, 0.5, -0.39999998, -4, 8, -0.39999998, -8, 10, 1.0999999, -8, 10, 1.0999999, 11, 11, 1.0999999, 11, 11, 1.0999999, -8, -2, 0.10000008, -1, -1.5, 0.10000008, -0.75, -1, 0.10000008, -0.75, -0.75, 0.10000008, -1.5, -0.75, 0.10000008, -2, -2, 0.10000008, -2, -0.75, -0.39999998, 3.75, -1, -0.39999998, 1.25, -3.25, -0.39999998, 1.25, -4, -0.39999998, 0.5, -8, -0.39999998, 11, -0.75, -0.39999998, 11, 1, 0.6000001, 2, 1.5, 0.6000001, 2.25, 2, 0.6000001, 2.25, 2.25, 0.6000001, 1.5, 2.25, 0.6000001, 1, 1, 0.6000001, 1, 4.25, -0.39999998, 3.25, 3.25, -0.39999998, 4.25, 8, -0.39999998, 11, -0.25, -0.39999998, 4.25)
+polygons = [PackedInt32Array(2, 1, 0), PackedInt32Array(5, 4, 3), PackedInt32Array(2, 0, 3), PackedInt32Array(3, 0, 6), PackedInt32Array(3, 6, 5), PackedInt32Array(9, 8, 7), PackedInt32Array(12, 11, 10), PackedInt32Array(13, 4, 5), PackedInt32Array(12, 10, 9), PackedInt32Array(7, 13, 5), PackedInt32Array(9, 7, 12), PackedInt32Array(12, 7, 14), PackedInt32Array(14, 7, 5), PackedInt32Array(18, 17, 15), PackedInt32Array(15, 17, 16), PackedInt32Array(20, 19, 21), PackedInt32Array(21, 19, 22), PackedInt32Array(22, 19, 23), PackedInt32Array(23, 19, 24), PackedInt32Array(27, 26, 25), PackedInt32Array(0, 1, 28), PackedInt32Array(0, 28, 27), PackedInt32Array(27, 25, 0), PackedInt32Array(0, 25, 30), PackedInt32Array(0, 30, 29), PackedInt32Array(32, 31, 33), PackedInt32Array(33, 31, 34), PackedInt32Array(34, 31, 35), PackedInt32Array(35, 31, 36), PackedInt32Array(37, 11, 12), PackedInt32Array(37, 12, 38), PackedInt32Array(38, 12, 39), PackedInt32Array(38, 39, 30), PackedInt32Array(40, 30, 25), PackedInt32Array(30, 40, 38)]
+cell_height = 0.05
+agent_height = 1.0
+agent_radius = 1.0
+agent_max_climb = 0.05
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" unique_id=718252882]
+navigation_mesh = SubResource("NavigationMesh_e0an3")
+
+[node name="GridMap" type="GridMap" parent="." unique_id=448888739]
+transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, -1, 0)
+mesh_library = ExtResource("1_jxdrg")
+cell_size = Vector3(6, 1, 6)
+data = {
+"cells": PackedInt32Array(65533, 65533, 655361, 65533, 65534, 655361, 65533, 65535, 655361, 65533, 0, 655361, 65533, 1, 655361, 65533, 2, 655361, 65534, 65533, 655361, 65534, 65534, 655361, 65534, 65535, 655361, 65534, 0, 655361, 65534, 1, 655361, 65534, 2, 655361, 65535, 65533, 655361, 65535, 65534, 655361, 65535, 65535, 655361, 65535, 0, 655361, 65535, 1, 655361, 65535, 2, 655361, 0, 65533, 655361, 0, 65534, 655361, 0, 65535, 655361, 0, 0, 655361, 0, 1, 655361, 0, 2, 655361, 1, 65533, 655361, 1, 65534, 655361, 1, 65535, 655361, 1, 0, 655361, 1, 1, 655361, 1, 2, 655361, 2, 65533, 655361, 2, 65534, 655361, 2, 65535, 655361, 2, 0, 655361, 2, 1, 655361, 2, 2, 655361, 131071, 65535, 655361, 65536, 0, 655361, 131072, 0, 655361, 2, 3, 655361, 1, 3, 655361, 0, 3, 655361, 65535, 3, 655361, 65533, 3, 655361, 65534, 3, 655361, 3, 65534, 1, 65539, 65534, 1, 131075, 65534, 1, 196611, 65534, 1, 196611, 65533, 1, 196611, 65535, 1, 196611, 0, 1, 196611, 1, 1, 196611, 2, 1, 196611, 3, 1, 3, 65533, 1, 3, 65535, 1, 3, 0, 1, 3, 1, 1, 3, 2, 1, 3, 3, 1, 65539, 65533, 1, 65539, 65535, 1, 65539, 0, 1, 65539, 1, 1, 65539, 2, 1, 65539, 3, 1, 131075, 65533, 1, 131075, 65535, 1, 131075, 0, 1, 131075, 1, 1, 131075, 2, 1, 131075, 3, 1)
+}
+script = ExtResource("2_jomr5")
+metadata/_editor_floor_ = Vector3(0, 2, 0)
