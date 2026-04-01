@@ -16,6 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_e0an3")
 
 [sub_resource type="Environment" id="Environment_urblq"]
 background_mode = 2
+background_energy_multiplier = 1.5
 sky = SubResource("Sky_p5pve")
 tonemap_mode = 2
 
@@ -35,15 +36,16 @@ visible = false
 
 [node name="NavigationRegion3D" parent="." unique_id=718252882 instance=ExtResource("2_hri6v")]
 
-[node name="astra" parent="." unique_id=2081025706 instance=ExtResource("3_5fhcm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0549002, -0.30529273, 5.85717)
-
-[node name="Control" parent="." unique_id=674102939 instance=ExtResource("5_2rqlu")]
-
 [node name="MeshInstance3D2" type="MeshInstance3D" parent="." unique_id=365545472]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0549002, -0.30529273, -5.776105)
 skeleton = NodePath("")
 script = ExtResource("4_6g4ax")
+radius = 5.0
+
+[node name="astra" parent="." unique_id=2081025706 instance=ExtResource("3_5fhcm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0549002, -0.30529273, 5.85717)
+
+[node name="Control" parent="." unique_id=674102939 instance=ExtResource("5_2rqlu")]
 
 [connection signal="move_characters" from="Control" to="astra" method="_on_control_move_characters"]
 [connection signal="pressed" from="Control/bottom character/character1" to="freeview_cam" method="_on_character_1_pressed"]

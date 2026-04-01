@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c0cym1ybr7tip"]
+
+[ext_resource type="Script" uid="uid://dptw2tyb8chke" path="res://scripts/character_pathfollowmover.gd" id="1_nt8ds"]
+[ext_resource type="Shape3D" uid="uid://bq36d2kcj5deu" path="res://resources/models/player_new_capsule_shape_3d.tres" id="2_nt8ds"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjt0s"]
+emission_enabled = true
+emission = Color(0.905623, 2.69532e-06, 0.522876, 1)
+emission_energy_multiplier = 2.52
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_wa5vi"]
+material = SubResource("StandardMaterial3D_pjt0s")
+
+[node name="CharacterBody3D" type="CharacterBody3D" unique_id=793791712]
+script = ExtResource("1_nt8ds")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=833781340]
+transform = Transform3D(1.97, 0, 0, 0, 0.222, 0, 0, 0, 1.97, 0, 0.126738, 0)
+mesh = SubResource("CylinderMesh_wa5vi")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=55133010]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0.135498, 0)
+shape = ExtResource("2_nt8ds")

@@ -1,6 +1,6 @@
 extends Camera3D
-@onready var astra : CharacterBody3D = $"../astra"
-
+@onready var astra : CharacterBody3D = $"../character1"
+@export var player1 = astra
 @onready var tracking_character : bool = true
 @onready var no_input : bool = false
 
@@ -17,6 +17,12 @@ extends Camera3D
 @onready var start_position: Vector3
 @onready var target_position: Vector3
 @onready var move_distance: float = 5.0
+
+
+func _ready() -> void:
+	if not player1:
+		player1 = astra
+
 
 func _unhandled_input(event: InputEvent) -> void:
 	if no_input == true:
@@ -69,8 +75,8 @@ func _unhandled_input(event: InputEvent) -> void:
 func start_tracking_character() -> void:	
 	if not is_moving:
 		var current_y = position.y
-		var character_x = astra.position.x
-		var character_z = astra.position.z
+		var character_x = player1.position.x
+		var character_z = player1.position.z
 		var newposition = Vector3(character_x, current_y, character_z)
 		move_cam_to_position(newposition)
 		tracking_character = not tracking_character
@@ -130,8 +136,8 @@ func _process(_delta: float) -> void:
 	
 	if tracking_character and not is_moving:
 		var current_y = position.y
-		var character_x = astra.position.x
-		var character_z = astra.position.z
+		var character_x = player1.position.x
+		var character_z = player1.position.z
 		position = Vector3(character_x, current_y, character_z)
 		return
 

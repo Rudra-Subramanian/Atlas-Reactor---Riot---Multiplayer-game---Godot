@@ -10,7 +10,8 @@ extends Control
 @onready var actions: VBoxContainer = $"actions"
 @onready var turn_end_actions: VBoxContainer = $"Turn end actions"
 
-@onready var astra: CharacterBody3D = $"../astra"
+@onready var astra: CharacterBody3D = $"../character1"
+@export var character1 = astra
 
 signal move_characters
 signal CurrentGameStep(step)
@@ -20,7 +21,9 @@ signal CurrentGameStep(step)
 
 func _ready() -> void:
 	CurrentGameStep.connect(ManageGameState)
-	astra.movement_finished.connect(set_character_done_movement)
+	if not character1:
+		character1 = astra
+	character1.movement_finished.connect(set_character_done_movement)
 
 
 func check_all_movement_done() -> bool:

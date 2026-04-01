@@ -27,6 +27,34 @@ func _unhandled_input(event: InputEvent) -> void:
 	return	
 
 
+func Draw_region(center_position, circle_radius):
+	var hit_points: Array[Vector3] = []
+	var space_state = get_world_3d().direct_space_state
+	var angle_step = (PI * 2.0) / ray_count
+	
+	for i in range(ray_count):
+		var hit_position = check_if_point_is_valid(i, angle_step, space_state, circle_radius, center_position)
+		# 1. Calculate the X and Z position on the circle's edge
+		
+		if hit_position:
+			hit_points.append(hit_position.position)
+
+			
+	return hit_points
+
+func remove_region() -> void:
+	self.mesh = null
+	for circle in circles:
+		circle.queue_free()
+	var children = get_children()
+	for child in children:
+		child.queue_free()
+	
+
+		
+		
+	
+
 
 
 
@@ -79,7 +107,7 @@ func check_if_point_is_valid(i, angle_step, space_state, distance_from_center, c
 			sphere.radius = 0.2
 			sphere.height = 0.4
 			dot.mesh = sphere
-			get_tree().root.add_child(dot)
+			add_child(dot)
 			dot.global_position = result.position
 			circles.append(dot)
 			return result

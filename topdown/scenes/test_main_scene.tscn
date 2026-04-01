@@ -21,10 +21,11 @@ tonemap_mode = 2
 
 [node name="Node3D" type="Node3D" unique_id=491007982]
 
-[node name="freeview_cam" type="Camera3D" parent="." unique_id=369228157]
+[node name="freeview_cam" type="Camera3D" parent="." unique_id=369228157 node_paths=PackedStringArray("player1")]
 transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, -9.534, 9.824, 7.327)
 fov = 80.0
 script = ExtResource("1_okcde")
+player1 = NodePath("../astra")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1442257328]
 environment = SubResource("Environment_urblq")
@@ -42,7 +43,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.53411, 0.000728011, 5.8571
 skeleton = NodePath("")
 script = ExtResource("4_4wpnj")
 
-[node name="Control" parent="." unique_id=674102939 instance=ExtResource("5_u4dqp")]
+[node name="Control" parent="." unique_id=674102939 node_paths=PackedStringArray("character1") instance=ExtResource("5_u4dqp")]
+character1 = NodePath("../astra")
 
 [connection signal="move_characters" from="Control" to="astra" method="_on_control_move_characters"]
 [connection signal="pressed" from="Control/bottom character/character1" to="freeview_cam" method="_on_character_1_pressed"]
