@@ -62,6 +62,9 @@ offset_right = 8.319992
 offset_bottom = -0.20007324
 alignment = 1
 
+[node name="current character" type="Label" parent="actions" unique_id=1427418700]
+layout_mode = 2
+
 [node name="action_sprint" type="Button" parent="actions" unique_id=146844299]
 layout_mode = 2
 text = "Sprint

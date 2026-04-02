@@ -1,17 +1,23 @@
 extends CharacterBody3D
 @onready var camera_3d: Camera3D = $"../freeview_cam"
 @onready var movement_path: Array[Vector3] = []
-@export var movement_speed: float = 10.0 #knife run speed
-
+@export var walking_speed: float = 5
+@export var peeking_speed: float = 1
+@export var running_speed: float = 8
+@export var current_movement_speed: float = 10.0 #knife run speed
+@onready var Health : float = 100
+@onready var TurnActions: Array = []
 
 enum CharacterState {
+	WAIT,
 	WALK,
 	RUN,
 	PEEK,
 	ABILITY1,
 	ABILITY2,
 	ABILITY3,
-	ABILITY4
+	ABILITY4,
+	DONE
 }
 
 
