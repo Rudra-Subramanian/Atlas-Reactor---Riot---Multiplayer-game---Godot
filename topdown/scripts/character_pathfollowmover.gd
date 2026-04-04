@@ -1,5 +1,4 @@
 extends CharacterBody3D
-@onready var camera_3d: Camera3D = $"../freeview_cam"
 @onready var movement_path: Array[Vector3] = []
 @export var walking_speed: float = 5
 @export var peeking_speed: float = 1
