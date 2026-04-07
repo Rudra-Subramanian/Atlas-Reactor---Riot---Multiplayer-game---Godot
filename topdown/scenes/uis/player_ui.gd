@@ -6,7 +6,7 @@ extends Control
 
 @onready var right_bar = $"Turn end actions"
 
-@onready var CharacterList : Array[Node3D] = []
+@onready var CharacterList : Array = []
 
 @onready var Ability1_button = $"actions/ability 1"
 @onready var Ability2_button = $"actions/ability 2"
@@ -18,9 +18,15 @@ extends Control
 @onready var character_3: Button =$"bottom character/character3"
 @onready var character_4: Button =$"bottom character/character4"
 @onready var character_5: Button =$"bottom character/character5"
+@onready var character_button_list = [character_1, character_2,character_3,character_4,character_5]
 @onready var free_cam: Button =$"bottom character/free cam"
 
+@onready var camera_3d = null
+
 @export var Agents : Array[Node3D] = []
+
+enum ClickMode {NOCLICK, CHARACTER}
+@onready var current_click_mode = ClickMode.NOCLICK
 
 
 signal Character_Pressed(Character: Node3D)
@@ -34,6 +40,29 @@ func _ready() -> void:
 	character_5.pressed.connect(Char5_pressed)
 	free_cam.pressed.connect(free_cam_pressed)
 	EnableUI()
+
+func initialize_character_list(new_character_list: Array):
+	CharacterList = new_character_list
+	for i in range(len(CharacterList)):
+		ChangeBottomBar(CharacterList[i], i)
+	update_bottom_bar_buttons()
+	return
+
+func update_bottom_bar_buttons():
+	var character_list_length = len(CharacterList)
+	for i in range(len(character_button_list)):
+		if i < character_list_length:
+			character_button_list[i].show()
+		else:
+			character_button_list[i].hide()
+		
+		
+		
+	
+	
+	
+func initialize_camera(camera_to_connect : Camera3D):
+	camera_3d = camera_to_connect
 
 func Char1_pressed() -> void:
 	if len(Agents) > 0:
@@ -108,6 +137,28 @@ func EnableUI() -> void:
 		if button is Button:
 			button.disabled = false
 	
+
+
+
+# --------------------------------------- INPUT HANDLING CLICKS ----------------------------------
+
+func _unhandled_input(event: InputEvent) -> void:
+	var CLICK_MODE = null
+	if (event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and camera_3d != null):
+		#var cell = get_cell_item(event.position)
+		#print('EVENT: %s \n cell: %s' % [event, cell])
+		var pos = event.position
+		var from =  camera_3d.project_ray_origin(pos)
+		var to = from + camera_3d.project_ray_normal(pos) * 1000
+		var space_state = camera_3d.get_world_3d().direct_space_state
+		var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
+		if len(result) > 0:
+			print('Clicked Position: %s' % [result.position])
+
+
+	
+	return
+
 		
 	
 	

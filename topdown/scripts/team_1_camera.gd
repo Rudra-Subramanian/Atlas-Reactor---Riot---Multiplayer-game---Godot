@@ -56,15 +56,15 @@ func _unhandled_input(event: InputEvent) -> void:
 
 # HELPER FUNCTIONS ---------------------
 func assign_player(index: int, PlayerNode: Node3D):
-	if index == 1:
+	if index == 0:
 		player1 = PlayerNode
-	elif index == 2:
+	elif index == 1:
 		player2 = PlayerNode
-	elif index == 3:
+	elif index == 2:
 		player3 = PlayerNode
-	elif index == 4:
+	elif index == 3:
 		player4 = PlayerNode
-	elif index == 5:
+	elif index == 4:
 		player5 = PlayerNode
 		
 

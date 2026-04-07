@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://bgmkqnf8b5hs1" path="res://levels/maps/RealMap.tscn" id="1_rdcis"]
 [ext_resource type="PackedScene" uid="uid://c0cym1ybr7tip" path="res://characters/base_character_no_skin.tscn" id="2_eiquc"]
 [ext_resource type="Script" uid="uid://bbuumwifsyum5" path="res://scripts/team_1_camera.gd" id="2_i7njl"]
-[ext_resource type="Script" uid="uid://n8w28wi15ut5" path="res://levels/test_levels/team_initializer.gd" id="2_rcs5l"]
 [ext_resource type="PackedScene" uid="uid://dfq7wi6wtd2jn" path="res://scenes/uis/Player_UI.tscn" id="4_axjva"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eiquc"]
@@ -37,7 +36,6 @@ shadow_enabled = true
 [node name="Combat Manager" type="Node" parent="Level" unique_id=3610718]
 
 [node name="Team 1" type="Node" parent="Level/Combat Manager" unique_id=660086793]
-script = ExtResource("2_rcs5l")
 
 [node name="Team1 Camera" type="Camera3D" parent="Level/Combat Manager/Team 1" unique_id=1703445386 node_paths=PackedStringArray("player1")]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 5, 10.1)
