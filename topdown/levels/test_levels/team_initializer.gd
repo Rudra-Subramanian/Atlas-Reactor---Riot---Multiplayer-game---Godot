@@ -21,11 +21,13 @@ func _ready() -> void:
 			character_list.append(child)
 	if camera != null and ui != null:
 		ui.initialize_camera(camera)
+		
 	if camera != null and len(character_list) > 0:
 		for i in range(len(character_list)):
 			camera.assign_player(i, character_list[i])
 	if ui != null and len(character_list) > 0:
 		ui.initialize_character_list(character_list)
+	
 		
 		
 		

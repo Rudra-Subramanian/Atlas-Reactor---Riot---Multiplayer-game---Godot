@@ -5,6 +5,7 @@
 [ext_resource type="Script" uid="uid://bbuumwifsyum5" path="res://scripts/team_1_camera.gd" id="2_i7njl"]
 [ext_resource type="Script" uid="uid://n8w28wi15ut5" path="res://levels/test_levels/team_initializer.gd" id="2_rcs5l"]
 [ext_resource type="PackedScene" uid="uid://dfq7wi6wtd2jn" path="res://scenes/uis/Player_UI.tscn" id="4_axjva"]
+[ext_resource type="PackedScene" uid="uid://dxoub3mrifx85" path="res://scenes/cursor.tscn" id="6_dd7t5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eiquc"]
 sky_top_color = Color(0.70149136, 0.4342548, 0.16648862, 1)
@@ -36,17 +37,20 @@ shadow_enabled = true
 
 [node name="Combat Manager" type="Node" parent="Level" unique_id=3610718]
 
-[node name="Team 1" type="Node" parent="Level/Combat Manager" unique_id=660086793]
+[node name="Team 1" type="Node" parent="Level/Combat Manager" unique_id=513055612]
 script = ExtResource("2_rcs5l")
 
-[node name="Team1 Camera" type="Camera3D" parent="Level/Combat Manager/Team 1" unique_id=1703445386 node_paths=PackedStringArray("player1")]
+[node name="Team1 Camera" type="Camera3D" parent="Level/Combat Manager/Team 1" unique_id=1009179899 node_paths=PackedStringArray("player1")]
 transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 5, 10.1)
 fov = 80.0
 script = ExtResource("2_i7njl")
 player1 = NodePath("../PlayerCharacterBase")
 
+[node name="cursor" parent="Level/Combat Manager/Team 1/Team1 Camera" unique_id=1960143218 instance=ExtResource("6_dd7t5")]
+transform = Transform3D(2, 0, 0, 0, 0.99999994, -1.7320509, 0, 1.7320509, 0.99999994, 0, 0.1176281, 0.20373726)
+
 [node name="PlayerCharacterBase" parent="Level/Combat Manager/Team 1" unique_id=1395664601 instance=ExtResource("2_eiquc")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06379032, 10.11275)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.1)
 
 [node name="Control" parent="Level/Combat Manager/Team 1" unique_id=674102939 instance=ExtResource("4_axjva")]
 

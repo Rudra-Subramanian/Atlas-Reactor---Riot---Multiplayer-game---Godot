@@ -13,6 +13,13 @@ extends Control
 @onready var Ability3_button = $"actions/ability 3"
 @onready var Ability4_button = $"actions/ability 4"
 
+@onready var action_sprint: Button = $actions/action_sprint
+@onready var action_sneak: Button = $actions/action_sneak
+@onready var action_peek: Button = $actions/action_peek
+@onready var action_hold: Button = $actions/action_hold
+@onready var action_walk: Button = $actions/action_walk
+
+
 @onready var character_1: Button = $"bottom character/character1"
 @onready var character_2: Button =$"bottom character/character2"
 @onready var character_3: Button =$"bottom character/character3"
@@ -31,6 +38,7 @@ enum ClickMode {NOCLICK, CHARACTER}
 
 signal Character_Pressed(Character: Node3D)
 signal FreeCamStart
+signal ActionPressed(ButtonName: String)
 
 func _ready() -> void:
 	character_1.pressed.connect(Char1_pressed)
@@ -39,6 +47,16 @@ func _ready() -> void:
 	character_4.pressed.connect(Char4_pressed)
 	character_5.pressed.connect(Char5_pressed)
 	free_cam.pressed.connect(free_cam_pressed)
+	action_sprint.pressed.connect(ActionPressed.emit.bind('Sprint'))
+	action_walk.pressed.connect(ActionPressed.emit.bind('Walk'))
+	action_peek.pressed.connect(ActionPressed.emit.bind('Hold'))
+	action_hold.pressed.connect(ActionPressed.emit.bind('Peak'))
+	action_sneak.pressed.connect(ActionPressed.emit.bind('Sneak'))
+	Ability1_button.pressed.connect(ActionPressed.emit.bind('Ability1'))
+	Ability2_button.pressed.connect(ActionPressed.emit.bind('Ability2'))
+	Ability3_button.pressed.connect(ActionPressed.emit.bind('Ability3'))
+	Ability4_button.pressed.connect(ActionPressed.emit.bind('Ability4'))
+	ActionPressed.emit('None')
 	EnableUI()
 
 func initialize_character_list(new_character_list: Array):
@@ -63,6 +81,8 @@ func update_bottom_bar_buttons():
 	
 func initialize_camera(camera_to_connect : Camera3D):
 	camera_3d = camera_to_connect
+	var cursor = camera_3d.get_children()[0]
+	ActionPressed.connect(cursor.on_action_pressed)
 
 func Char1_pressed() -> void:
 	if len(Agents) > 0:
@@ -154,12 +174,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		var result = space_state.intersect_ray(PhysicsRayQueryParameters3D.create(from, to))
 		if len(result) > 0:
 			print('Clicked Position: %s' % [result.position])
+			var cursor = camera_3d.get_children()[0]
+			cursor.spin_cursor()
+			
 
 
 	
 	return
 
-		
+
 	
 	
 	

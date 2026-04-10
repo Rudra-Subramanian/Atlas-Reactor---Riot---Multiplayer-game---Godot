@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://b54xyrx4s0gx2"]
+
+[ext_resource type="Script" uid="uid://n8w28wi15ut5" path="res://levels/test_levels/team_initializer.gd" id="1_yvt8h"]
+[ext_resource type="Script" uid="uid://bbuumwifsyum5" path="res://scripts/team_1_camera.gd" id="2_iekp2"]
+[ext_resource type="PackedScene" uid="uid://c0cym1ybr7tip" path="res://characters/base_character_no_skin.tscn" id="3_hkp0v"]
+[ext_resource type="PackedScene" uid="uid://dfq7wi6wtd2jn" path="res://scenes/uis/Player_UI.tscn" id="4_8rjcw"]
+
+[node name="Combat Manager" type="Node" unique_id=290522267]
+
+[node name="Team 1" type="Node" parent="." unique_id=1294597608]
+script = ExtResource("1_yvt8h")
+
+[node name="Team1 Camera" type="Camera3D" parent="Team 1" unique_id=531127595 node_paths=PackedStringArray("player1")]
+transform = Transform3D(1, 0, 0, 0, 0.49999997, 0.86602545, 0, -0.86602545, 0.49999997, 0, 5, 10.1)
+fov = 80.0
+script = ExtResource("2_iekp2")
+player1 = NodePath("../PlayerCharacterBase")
+
+[node name="PlayerCharacterBase" parent="Team 1" unique_id=1395664601 instance=ExtResource("3_hkp0v")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06379032, 10.11275)
+
+[node name="Control" parent="Team 1" unique_id=674102939 instance=ExtResource("4_8rjcw")]
+
+[node name="Team 2" type="Node" parent="." unique_id=156999441]
+
+[node name="Team2 Camera" type="Camera3D" parent="Team 2" unique_id=1789509665]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1.5484552, -10.085787)
