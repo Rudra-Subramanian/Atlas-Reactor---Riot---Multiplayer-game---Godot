@@ -11,41 +11,30 @@ extends MeshInstance3D
 @onready var query_parameters := NavigationPathQueryParameters3D.new()
 @onready var query_result := NavigationPathQueryResult3D.new()
 @onready var circles : Array = []
+@onready var lines : Array
 
-
-
-func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
-		#var collision_array = get_collision_array()
-		#form_mesh(collision_array)
-		for circle in circles:
-			circle.queue_free()
-		circles.clear()
-		self.mesh = null
-		var  points = get_bounding_pointsfunc(global_position)
-		draw_better_mesh(points, global_position)
-	return	
-
-
-func Draw_region(center_position, circle_radius):
-	var hit_points: Array[Vector3] = []
-	var space_state = get_world_3d().direct_space_state
-	var angle_step = (PI * 2.0) / ray_count
-	
-	for i in range(ray_count):
-		var hit_position = check_if_point_is_valid(i, angle_step, space_state, circle_radius, center_position)
-		# 1. Calculate the X and Z position on the circle's edge
-		
-		if hit_position:
-			hit_points.append(hit_position.position)
-
-			
-	return hit_points
-
-func remove_region() -> void:
-	self.mesh = null
+func clear_all_circles():
 	for circle in circles:
 		circle.queue_free()
+	circles.clear()
+
+func clear_mesh():
+	self.mesh = null
+
+func display_region(center_position, circle_radius, show_circles = false):
+	remove_region()
+	var points = get_bounding_pointsfunc(center_position, circle_radius, show_circles)
+	draw_better_mesh(points, center_position)
+	
+
+	
+	
+
+
+
+func remove_region() -> void:
+	clear_mesh()
+	clear_all_circles()
 	var children = get_children()
 	for child in children:
 		child.queue_free()
@@ -59,16 +48,17 @@ func remove_region() -> void:
 
 
 
-func get_bounding_pointsfunc(center_position) -> Array[Vector3]:
+func get_bounding_pointsfunc(center_position, circle_radius = radius, draw_spheres = true) -> Array[Vector3]:
 	var hit_points: Array[Vector3] = []
 	var parent = get_parent()
 	var space_state = get_world_3d().direct_space_state
 	# Calculate the angle between each ray
 	var angle_step = (PI * 2.0) / ray_count
-
+	var maximum_path_length = circle_radius
 	for i in range(ray_count):
-		var hit_position = check_if_point_is_valid(i, angle_step, space_state, radius, center_position)
-		# 1. Calculate the X and Z position on the circle's edge
+
+		var hit_position = check_if_point_is_valid(i, angle_step, space_state, circle_radius, center_position, draw_spheres, maximum_path_length)
+		
 		
 		if hit_position:
 			hit_points.append(hit_position.position)
@@ -76,8 +66,8 @@ func get_bounding_pointsfunc(center_position) -> Array[Vector3]:
 			
 	return hit_points
 
-func check_if_point_is_valid(i, angle_step, space_state, distance_from_center, center_position):
-			# 1. Calculate the X and Z position on the circle's edge
+func check_if_point_is_valid(i, angle_step, space_state, distance_from_center, center_position, draw_spheres, maximum_path_length):
+		# 1. Calculate the X and Z position on the circle's edge
 		var current_angle = i * angle_step
 		var x = cos(current_angle) * distance_from_center
 		var z = sin(current_angle) * distance_from_center
@@ -94,25 +84,26 @@ func check_if_point_is_valid(i, angle_step, space_state, distance_from_center, c
 		
 		# 4. If we hit the mesh, save the coordinate
 		if result:
-			var path_to_point = query_path(global_position, result.position)
+			var path_to_point = query_path(center_position, result.position)
 			#print('\n\npat  h to the found point is %s \n final position is: %s' % [path_to_point, result.position])
 			var length_to_path = get_length_of_path(path_to_point, result.position)
-			if length_to_path > 20:
-				return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2, center_position)
+			if length_to_path > maximum_path_length:
+				return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2, center_position, draw_spheres, maximum_path_length)
 			print('path length %s' % [length_to_path])
 			result.position.y += 0.2
 			#print(result.position)
-			var dot = MeshInstance3D.new()
-			var sphere = SphereMesh.new()
-			sphere.radius = 0.2
-			sphere.height = 0.4
-			dot.mesh = sphere
-			add_child(dot)
-			dot.global_position = result.position
-			circles.append(dot)
+			if draw_spheres:
+				var dot = MeshInstance3D.new()
+				var sphere = SphereMesh.new()
+				sphere.radius = 0.2
+				sphere.height = 0.4
+				dot.mesh = sphere
+				add_child(dot)
+				dot.global_position = result.position
+				circles.append(dot)
 			return result
 		elif distance_from_center > 0.2:
-			return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2, center_position)
+			return check_if_point_is_valid(i, angle_step, space_state, distance_from_center - 0.2, center_position, draw_spheres, maximum_path_length)
 		else:
 			return result
 
@@ -132,7 +123,7 @@ func get_collision_array() -> Array:
 
 
 
-func draw_line(point_array: Array):
+func draw_line(point_array: Array, persist_ms : float):
 	var mesh_instance := MeshInstance3D.new()
 	var immediate_mesh := ImmediateMesh.new()
 	var material := ORMMaterial3D.new()
@@ -148,7 +139,7 @@ func draw_line(point_array: Array):
 	material.albedo_color = Color(0.765, 0.0, 0.322, 1)
 	material.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 
-	return await final_cleanup(mesh_instance, 1)
+	return await final_cleanup(mesh_instance, persist_ms)
 
 func draw_better_mesh(hit_points : Array, center_pos):
 	if hit_points.size() < 3:
@@ -192,43 +183,14 @@ func draw_better_mesh(hit_points : Array, center_pos):
 	mat.albedo_color = Color(0.0, 0.0, 1.0, 0.6)
 	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
 	set_surface_override_material(0, mat)
-
+	
+	return
 	#return await final_cleanup(mesh_instance, 0)
 
 
-func draw_mesh(point_array: Array, persist_ms: float):
-	var mesh_instance := MeshInstance3D.new()
-	var immediate_mesh := ImmediateMesh.new()
-	var mat := ORMMaterial3D.new()
-	mesh_instance.mesh = immediate_mesh
-	mesh_instance.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
-
-	immediate_mesh.surface_begin(Mesh.PRIMITIVE_TRIANGLE_STRIP, mat)
-	for i in range(len(point_array)):
-		immediate_mesh.surface_add_vertex(point_array[i])
-	immediate_mesh.surface_end()
-
-	mat.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	mat.albedo_color = Color(0.0, 0.0, 1.0, 0.6)
-	mat.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
-
-	return await final_cleanup(mesh_instance, persist_ms)
 
 
-func form_mesh(point_array: Array) -> bool:
-	#get length of point_array
-	var point_length = len(point_array)
-	if point_length < 2:
-		print('not enough collisions')
-		return false
-	elif point_length == 2:
-		draw_line(point_array)
-		return true
-	else:
-		draw_mesh(point_array, 100)
-		return true
-		
-	return false
+
 	
 ## 1 -> Lasts ONLY for current physics frame
 ## >1 -> Lasts X time duration.
@@ -240,35 +202,26 @@ func final_cleanup(mesh_instance, persist_ms: float):
 	#		child.mesh.clear_surfaces()
 	#		child.queue_free()
 	get_tree().get_root().add_child(mesh_instance)
+	lines.append(mesh_instance)
 	if persist_ms == 1:
 		await get_tree().physics_frame
+		var index = lines.find(mesh_instance)
+		lines.remove_at(index)
 		mesh_instance.queue_free()
 	elif persist_ms > 0:
 		await get_tree().create_timer(persist_ms).timeout
+		var index = lines.find(mesh_instance)
+		lines.remove_at(index)
 		mesh_instance.queue_free()
 	else:
 		return mesh_instance
-		
+
+func remove_lines():
+	for line in lines:
+		line.queue_free()
 		
 
-func create_intersection_mesh(position):
-	var space_state = get_world_3d().direct_space_state
-	var cylinder = CylinderShape3D.new()
-	cylinder.radius = 20.0
-	cylinder.height = 20.0
-	var query = PhysicsShapeQueryParameters3D.new()
-	query.shape = cylinder
-	# Center the 20-unit high cylinder at Y=0 to cover Y=10 to Y=-10
-	query.transform = global_transform 
-	query.collision_mask = 1 # Set this to match your target objects' layers
-	var points = space_state.collide_shape(query, 100)
-	# 3. Process the pairs
-	var point_list = []
-	for i in range(0, points.size(), 2):
-		var point_on_mesh = points[i + 1] # The second point in the pair
-		#print("in index %s Contact point on mesh: %s"% [i+1,point_on_mesh])
-		point_list.append(point_on_mesh)
-	draw_mesh(point_list, 100)
+
 
 
 
@@ -309,6 +262,7 @@ func get_length_of_path(path : PackedVector3Array, final_position) -> float:
 			#print('portion length for part %s: %s' % [i, portion_length])
 			path_length = path_length + portion_length
 		#print(path_length)
+		#draw_line(path, 20.0)
 		return path_length
 	
-	return 10000
+	return 10000 # VERY LONG LENGTH HOPEFULLY TOO LONG EVER

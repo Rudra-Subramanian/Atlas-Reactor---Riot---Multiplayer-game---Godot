@@ -6,7 +6,8 @@ extends Node3D
 @onready var animation_player = $AnimationPlayer
 
 
-func on_action_pressed(action_string: String):
+func on_action_pressed(action_string: String, character: Node3D):
+	print(character)
 	print(action_string)
 	if action_string == 'Sprint':
 		update_show(true)

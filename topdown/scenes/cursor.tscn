@@ -46,6 +46,7 @@ shadow_mesh = SubResource("ArrayMesh_t3bqi")
 [sub_resource type="Animation" id="Animation_lu0ry"]
 resource_name = "Cone|float"
 length = 0.9583333
+loop_mode = 1
 tracks/0/type = "position_3d"
 tracks/0/imported = true
 tracks/0/enabled = true

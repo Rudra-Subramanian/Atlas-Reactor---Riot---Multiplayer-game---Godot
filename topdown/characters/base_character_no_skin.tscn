@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cvanlwdic16b3" path="res://characters/Character_state_machine.gd" id="2_g7hpm"]
 [ext_resource type="Shape3D" uid="uid://bq36d2kcj5deu" path="res://resources/models/player_new_capsule_shape_3d.tres" id="2_nt8ds"]
+[ext_resource type="Script" uid="uid://gcswkusiytg2" path="res://characters/character_action_resolver.gd" id="3_g7hpm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pjt0s"]
 emission_enabled = true
@@ -18,6 +19,7 @@ transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="character" unique_id=833781340]
 transform = Transform3D(1.97, 0, 0, 0, 0.222, 0, 0, 0, 1.97, 0, 0.126738, 0)
+cast_shadow = 0
 mesh = SubResource("CylinderMesh_wa5vi")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="character" unique_id=55133010]
@@ -27,8 +29,9 @@ shape = ExtResource("2_nt8ds")
 [node name="state machine" type="Node" parent="." unique_id=176383594]
 script = ExtResource("2_g7hpm")
 
-[node name="AI" type="Node" parent="." unique_id=1391199523]
-
 [node name="Action Resolver" type="Node" parent="." unique_id=451243878]
+script = ExtResource("3_g7hpm")
+
+[node name="AI" type="Node" parent="." unique_id=1391199523]
 
 [node name="effects" type="Node3D" parent="." unique_id=2023881194]

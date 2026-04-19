@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dfq7wi6wtd2jn"]
 
 [ext_resource type="Script" uid="uid://dqov4egwvc30a" path="res://scenes/uis/player_ui.gd" id="1_5uqqg"]
+[ext_resource type="Theme" uid="uid://bugk3o216bj8v" path="res://text_theme.tres" id="2_0lrrg"]
 
 [node name="Control" type="Control" unique_id=674102939]
 layout_mode = 3
@@ -9,7 +10,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 script = ExtResource("1_5uqqg")
 
 [node name="bottom character" type="HBoxContainer" parent="." unique_id=1324925242]
@@ -24,32 +24,38 @@ offset_right = 2.0
 offset_bottom = 4.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("2_0lrrg")
 theme_override_constants/separation = 20
 
 [node name="character1" type="Button" parent="bottom character" unique_id=1476112691]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "character 1"
 
 [node name="character2" type="Button" parent="bottom character" unique_id=467574345]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "character 2"
 
 [node name="character3" type="Button" parent="bottom character" unique_id=997735489]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "character 3"
 
 [node name="character4" type="Button" parent="bottom character" unique_id=987203655]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "character 4"
 
 [node name="character5" type="Button" parent="bottom character" unique_id=2019364051]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "character 5"
 
 [node name="free cam" type="Button" parent="bottom character" unique_id=1518355258]
 layout_mode = 2
-text = "free cam
-"
+theme = ExtResource("2_0lrrg")
+text = "free cam"
 
 [node name="actions" type="VBoxContainer" parent="." unique_id=884205986]
 layout_mode = 1
@@ -64,44 +70,54 @@ alignment = 1
 
 [node name="current character" type="Label" parent="actions" unique_id=1427418700]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 
 [node name="action_sprint" type="Button" parent="actions" unique_id=146844299]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Sprint
 "
 
 [node name="action_walk" type="Button" parent="actions" unique_id=145014871]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Walk
 "
 
 [node name="action_sneak" type="Button" parent="actions" unique_id=52885662]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Sneak
 "
 
 [node name="action_peek" type="Button" parent="actions" unique_id=673763168]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Peek"
 
 [node name="action_hold" type="Button" parent="actions" unique_id=1154241581]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Hold"
 
 [node name="ability 1" type="Button" parent="actions" unique_id=1732206001]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Ability 1"
 
 [node name="ability 2" type="Button" parent="actions" unique_id=1356798282]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Ability 2"
 
 [node name="ability 3" type="Button" parent="actions" unique_id=1619418162]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Ability 3"
 
 [node name="ability 4" type="Button" parent="actions" unique_id=1556694353]
 layout_mode = 2
+theme = ExtResource("2_0lrrg")
 text = "Ultimate"
 
 [node name="Turn end actions" type="VBoxContainer" parent="." unique_id=361430654]
@@ -119,10 +135,10 @@ alignment = 2
 
 [node name="confirm button" type="Button" parent="Turn end actions" unique_id=91170912]
 layout_mode = 2
-text = "Confirm
-"
+theme = ExtResource("2_0lrrg")
+text = "Confirm"
 
-[node name="skip button" type="Button" parent="Turn end actions" unique_id=878950784]
+[node name="cancel button" type="Button" parent="Turn end actions" unique_id=878950784]
 layout_mode = 2
-text = "Skip
-"
+theme = ExtResource("2_0lrrg")
+text = "Cancel"

@@ -66,8 +66,17 @@ func assign_player(index: int, PlayerNode: Node3D):
 		player4 = PlayerNode
 	elif index == 4:
 		player5 = PlayerNode
-		
 
+func track_character(character):
+	var character_list = [player1, player2, player3, player4, player5]
+	if character == null:
+		tracking_character = null
+	elif character in character_list:
+		tracking_character = character
+		
+		
+func stop_tracking():
+	track_character(null)
 
 func _process(_delta: float) -> void:
 	if is_rotating:

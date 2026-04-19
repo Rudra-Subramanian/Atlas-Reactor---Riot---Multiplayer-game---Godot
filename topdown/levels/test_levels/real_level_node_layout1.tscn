@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://n8w28wi15ut5" path="res://levels/test_levels/team_initializer.gd" id="2_rcs5l"]
 [ext_resource type="PackedScene" uid="uid://dfq7wi6wtd2jn" path="res://scenes/uis/Player_UI.tscn" id="4_axjva"]
 [ext_resource type="PackedScene" uid="uid://dxoub3mrifx85" path="res://scenes/cursor.tscn" id="6_dd7t5"]
+[ext_resource type="Script" uid="uid://bchknmhc3c1oo" path="res://scripts/movement_decal.gd" id="7_xqgkq"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_eiquc"]
 sky_top_color = Color(0.70149136, 0.4342548, 0.16648862, 1)
@@ -53,6 +54,10 @@ transform = Transform3D(2, 0, 0, 0, 0.99999994, -1.7320509, 0, 1.7320509, 0.9999
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.1)
 
 [node name="Control" parent="Level/Combat Manager/Team 1" unique_id=674102939 instance=ExtResource("4_axjva")]
+
+[node name="region_display" type="MeshInstance3D" parent="Level/Combat Manager/Team 1" unique_id=115385121]
+skeleton = NodePath("")
+script = ExtResource("7_xqgkq")
 
 [node name="Team 2" type="Node" parent="Level/Combat Manager" unique_id=1215382504]
 
