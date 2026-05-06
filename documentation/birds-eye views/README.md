@@ -65,13 +65,13 @@ topdown/
 
 Each script has detailed documentation:
 
-- [ActionClass Documentation](./ActionClass.md)
-- [Character State Machine Documentation](./Character_state_machine.md)
-- [Camera Systems Documentation](./CameraSystems.md)
-- [Movement Systems Documentation](./MovementSystems.md)
-- [UI Systems Documentation](./UISystems.md)
-- [Navigation System Documentation](./NavigationSystem.md)
-- [Initialization System Documentation](./TeamInitializer.md)
+- [ActionClass Documentation](ActionClass.md)
+- [Character State Machine Documentation](Character_state_machine.md)
+- [Camera Systems Documentation](CameraSystems.md)
+- [Movement Systems Documentation](MovementSystems.md)
+- [UI Systems Documentation](UISystems.md)
+- [Navigation System Documentation](NavigationSystem.md)
+- [Initialization System Documentation](TeamInitializer.md)
 
 ## Getting Started
 

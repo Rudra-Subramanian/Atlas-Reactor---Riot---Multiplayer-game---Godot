@@ -10,25 +10,25 @@ This documentation covers all Godot 4.6 GDScript files in the Atlas Reactor proj
 
 ### 📚 Core Documentation Files
 
-1. **[README.md](./README.md)** - Project overview and quick start
-2. **[ActionClass.md](./ActionClass.md)** - Action system deep dive
-3. **[Character_state_machine.md](./Character_state_machine.md)** - Character state and action management
-4. **[CameraSystems.md](./CameraSystems.md)** - All camera implementations
-5. **[MovementSystems.md](./MovementSystems.md)** - Movement and navigation
-6. **[UISystems.md](./UISystems.md)** - Player UI controllers
-7. **[NavigationSystem.md](./NavigationSystem.md)** - Navigation and pathfinding
-8. **[CursorSystem.md](./CursorSystem.md)** - Cursor and targeting
-9. **[TeamInitializer.md](./TeamInitializer.md)** - Level initialization
+1. **[README.md](birds-eye%20views/README.md)** - Project overview and quick start
+2. **[ActionClass.md](ActionClass.md)** - Action system deep dive
+3. **[Character_state_machine.md](Character_state_machine.md)** - Character state and action management
+4. **[CameraSystems.md](CameraSystems.md)** - All camera implementations
+5. **[MovementSystems.md](MovementSystems.md)** - Movement and navigation
+6. **[UISystems.md](UISystems.md)** - Player UI controllers
+7. **[NavigationSystem.md](NavigationSystem.md)** - Navigation and pathfinding
+8. **[CursorSystem.md](CursorSystem.md)** - Cursor and targeting
+9. **[TeamInitializer.md](TeamInitializer.md)** - Level initialization
 
 ### 🎯 Templates
 
 Located in `templates/` folder:
 
-- **[action_template.gd](./templates/action_template.gd)** - Creating custom actions
-- **[character_template.gd](./templates/character_template.gd)** - New character setup
-- **[custom_camera_template.gd](./templates/custom_camera_template.gd)** - Custom cameras
-- **[level_template.gd](./templates/level_template.gd)** - Level creation
-- **[ability_template.gd](./templates/ability_template.gd)** - Ability system
+- **[action_template.gd](action_template.gd)** - Creating custom actions
+- **[character_template.gd](character_template.gd)** - New character setup
+- **[custom_camera_template.gd](custom_camera_template.gd)** - Custom cameras
+- **[level_template.gd](level_template.gd)** - Level creation
+- **[ability_template.gd](ability_template.gd)** - Ability system
 
 ---
 
@@ -36,19 +36,19 @@ Located in `templates/` folder:
 
 | File | Type | Extends | Purpose | Documentation |
 |------|------|---------|---------|---------------|
-| `ActionClass.gd` | Class | - | Base action definition | [Link](./ActionClass.md) |
-| `Character_state_machine.gd` | Script | Node | Character actions & states | [Link](./Character_state_machine.md) |
-| `CameraMover.gd` | Class | Camera3D | Base camera controller | [Link](./CameraSystems.md#cameramover-base-class) |
-| `team_1_camera.gd` | Script | CameraMover | Team camera with tracking | [Link](./CameraSystems.md#team1camera-extended-camera) |
-| `freeview_cam_movement.gd` | Script | Camera3D | Free camera mode | [Link](./CameraSystems.md#freeviewcammovement) |
-| `point_and_click_mover.gd` | Script | CharacterBody3D | Click-to-move system | [Link](./MovementSystems.md#point-and-click-mover) |
-| `character_pathfollowmover.gd` | Script | CharacterBody3D | Path following movement | [Link](./MovementSystems.md#character-path-follow-mover) |
-| `movement_decal.gd` | Script | MeshInstance3D | Movement visualization | [Link](./MovementSystems.md#movement-decal-visualization) |
-| `player_ui.gd` | Script | Control | Main UI controller | [Link](./UISystems.md#player-ui-main-controller) |
-| `character_ui_scene.gd` | Script | Control | Legacy UI controller | [Link](./UISystems.md#character-ui-scene-legacy) |
-| `navigation_path_finder.gd` | Class | Node3D | Navigation helper | [Link](./NavigationSystem.md) |
-| `cursor_placer.gd` | Script | Node3D | 3D cursor system | [Link](./CursorSystem.md) |
-| `team_initializer.gd` | Script | Node | Level component setup | [Link](./TeamInitializer.md) |
+| `ActionClass.gd` | Class | - | Base action definition | [Link](ActionClass.md) |
+| `Character_state_machine.gd` | Script | Node | Character actions & states | [Link](Character_state_machine.md) |
+| `CameraMover.gd` | Class | Camera3D | Base camera controller | [Link](CameraSystems.md#cameramover-base-class) |
+| `team_1_camera.gd` | Script | CameraMover | Team camera with tracking | [Link](CameraSystems.md#team1camera-extended-camera) |
+| `freeview_cam_movement.gd` | Script | Camera3D | Free camera mode | [Link](CameraSystems.md#freeviewcammovement) |
+| `point_and_click_mover.gd` | Script | CharacterBody3D | Click-to-move system | [Link](MovementSystems.md#point-and-click-mover) |
+| `character_pathfollowmover.gd` | Script | CharacterBody3D | Path following movement | [Link](MovementSystems.md#character-path-follow-mover) |
+| `movement_decal.gd` | Script | MeshInstance3D | Movement visualization | [Link](MovementSystems.md#movement-decal-visualization) |
+| `player_ui.gd` | Script | Control | Main UI controller | [Link](UISystems.md#player-ui-main-controller) |
+| `character_ui_scene.gd` | Script | Control | Legacy UI controller | [Link](UISystems.md#character-ui-scene-legacy) |
+| `navigation_path_finder.gd` | Class | Node3D | Navigation helper | [Link](NavigationSystem.md) |
+| `cursor_placer.gd` | Script | Node3D | 3D cursor system | [Link](CursorSystem.md) |
+| `team_initializer.gd` | Script | Node | Level component setup | [Link](TeamInitializer.md) |
 
 ---
 
@@ -74,36 +74,36 @@ Located in `templates/` folder:
 
 ### Adding a New Character
 
-1. Read: [Character_state_machine.md](./Character_state_machine.md)
-2. Use template: [character_template.gd](./templates/character_template.gd)
+1. Read: [Character_state_machine.md](Character_state_machine.md)
+2. Use template: [character_template.gd](character_template.gd)
 3. Configure actions in Character State Machine
 4. Add to level scene
 
 ### Creating Custom Action
 
-1. Read: [ActionClass.md](./ActionClass.md)
-2. Use template: [action_template.gd](./templates/action_template.gd)
+1. Read: [ActionClass.md](ActionClass.md)
+2. Use template: [action_template.gd](action_template.gd)
 3. Add initialization in Character State Machine
 4. Connect to UI button
 
 ### Setting Up Level
 
-1. Read: [TeamInitializer.md](./TeamInitializer.md)
-2. Use template: [level_template.gd](./templates/level_template.gd)
+1. Read: [TeamInitializer.md](TeamInitializer.md)
+2. Use template: [level_template.gd](level_template.gd)
 3. Add Camera, UI, Characters as children
 4. Attach TeamInitializer script
 
 ### Implementing Ability
 
-1. Read: [ActionClass.md](./ActionClass.md) & [UISystems.md](./UISystems.md)
-2. Use template: [ability_template.gd](./templates/ability_template.gd)
+1. Read: [ActionClass.md](ActionClass.md) & [UISystems.md](UISystems.md)
+2. Use template: [ability_template.gd](ability_template.gd)
 3. Add to Character's Action_list
 4. Handle in action execution logic
 
 ### Custom Camera Behavior
 
-1. Read: [CameraSystems.md](./CameraSystems.md)
-2. Use template: [custom_camera_template.gd](./templates/custom_camera_template.gd)
+1. Read: [CameraSystems.md](CameraSystems.md)
+2. Use template: [custom_camera_template.gd](custom_camera_template.gd)
 3. Extend CameraMover class
 4. Override _process() for custom behavior
 

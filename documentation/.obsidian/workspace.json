@@ -13,15 +13,56 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "ActionClass.md",
+                "file": "TODO.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "ActionClass"
+              "title": "TODO"
+            }
+          },
+          {
+            "id": "15d762d848673768",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "birds-eye views/grenade throwable.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "grenade throwable"
+            }
+          },
+          {
+            "id": "4c075dc86da0fea3",
+            "type": "leaf",
+            "state": {
+              "type": "excalidraw",
+              "state": {
+                "file": "Excalidraw/Drawing 2026-05-06 08.23.37.excalidraw.md"
+              },
+              "icon": "excalidraw-icon",
+              "title": "Drawing 2026-05-06 08.23.37.excalidraw"
+            }
+          },
+          {
+            "id": "ae4b1523940b0c0b",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "templates/gdscripttemplate.md",
+                "mode": "source",
+                "source": false
+              },
+              "icon": "lucide-file",
+              "title": "gdscripttemplate"
             }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -180,13 +221,33 @@
       "daily-notes:Open today's daily note": false,
       "templates:Insert template": false,
       "command-palette:Open command palette": false,
-      "bases:Create new base": false
+      "bases:Create new base": false,
+      "obsidian-excalidraw-plugin:New drawing": false
     }
   },
-  "active": "958ee981d58d2c25",
+  "active": "15d762d848673768",
   "lastOpenFiles": [
+    "Excalidraw/Drawing 2026-05-06 08.23.37.excalidraw.md",
+    "birds-eye views/grenade throwable.md",
+    "Excalidraw",
+    "templates/gdscripttemplate.md",
+    "grenade.gd.md",
+    "TODO.md",
+    "birds-eye views/UISystems.md",
+    "gscript file/TeamInitializer.md",
+    "birds-eye views/NavigationSystem.md",
+    "birds-eye views/MovementSystems.md",
+    "Notes/INDEX.md",
+    "birds-eye views/CursorSystem.md",
+    "gscript file/Character_state_machine.md",
+    "birds-eye views/CameraSystems.md",
+    "gscript file/ActionClass.md",
+    "birds-eye views/README.md",
+    "birds-eye views",
+    "Notes",
     "templates/README.md",
-    "ActionClass.md",
-    "README.md"
+    "Functions",
+    "Classes",
+    "gscript file"
   ]
 }
