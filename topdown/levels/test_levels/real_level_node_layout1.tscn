@@ -58,6 +58,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10.1)
 [node name="region_display" type="MeshInstance3D" parent="Level/Combat Manager/Team 1" unique_id=115385121]
 skeleton = NodePath("")
 script = ExtResource("7_xqgkq")
+ray_count = 360
 
 [node name="Team 2" type="Node" parent="Level/Combat Manager" unique_id=1215382504]
 
