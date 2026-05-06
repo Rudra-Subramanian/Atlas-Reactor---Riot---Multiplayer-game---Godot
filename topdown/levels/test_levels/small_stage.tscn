@@ -22,7 +22,7 @@ tonemap_mode = 2
 [node name="Node3D" type="Node3D" unique_id=491007982]
 
 [node name="freeview_cam" type="Camera3D" parent="." unique_id=369228157]
-transform = Transform3D(1, 0, 0, 0, 0.25881907, 0.9659258, 0, -0.9659258, 0.25881907, -9.534, 9.824, 7.327)
+transform = Transform3D(1, 0, 0, 0, 0.7478561, 0.6638609, 0, -0.6638609, 0.7478561, -9.534, 4.402136, 7.327)
 fov = 80.0
 script = ExtResource("1_gqb5b")
 

@@ -15,14 +15,47 @@ func get_position_from_camera(pos):
 	return global_position
 
 func send_object(end_position, initial_velocity):
-	#find vector from start position to end position
-	# make sure both points are on the same y plane
-	#find distance from start point to end position (or length of vector found earlier)
-	# calculate ((V^2)/g) * (2sin(45)), if greater than max distance find impulse vector at V at 45 degrees in direction of targett
-	# if greater then theta is asin((Distance*gravity)/(2v^2))
-	#find impulse vector at V at theta degrees in direction of target
-	#apply_center_impulse(impulse_vector)
-	pass
+	var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
+	
+	
+	# Find vector from start position to end position
+	var start_pos = global_position
+	var direction_vector = end_position - start_pos
+	
+	# Make sure both points are on the same y plane
+	var start_flat = Vector3(start_pos.x, 0, start_pos.z)
+	var end_flat = Vector3(end_position.x, 0, end_position.z)
+	var flat_vector = end_flat - start_flat
+	
+	# Find distance from start point to end position (or length of vector found earlier)
+	var distance = flat_vector.length()
+	var horizontal_direction = flat_vector.normalized()
+	
+	# Calculate ((V^2)/g) * (2sin(45))
+	var max_distance = ((initial_velocity * initial_velocity) / gravity) #* (2 * sin(deg_to_rad(45)))
+	
+	var theta = 0.0
+	
+	# If greater than max distance find impulse vector at V at 45 degrees in direction of target
+	if distance > max_distance:
+		print('too far')
+		theta = deg_to_rad(45)
+	else:
+		# If within range then theta is asin((Distance*gravity)/(2v^2))
+		var angle_value = (distance * gravity) / (2 * initial_velocity * initial_velocity)
+		print('Angle value before clamping: %s' % [angle_value])
+		angle_value = clamp(angle_value, -1.0, 1.0)  # Ensure valid range for asin
+		theta = deg_to_rad(90 - (rad_to_deg(asin(angle_value))))
+	
+	# Find impulse vector at V at theta degrees in direction of target
+	var horizontal_velocity = initial_velocity * cos(theta)
+	var vertical_velocity = initial_velocity * sin(theta)
+	var impulse_vector = (horizontal_direction * horizontal_velocity) + (Vector3.UP * vertical_velocity)
+	print('angle: %s \nmax distance: %s\ndistance: %s\nhorizontal direction: %s\nhorizontal velocity: %s\nvertical velocity: %s' % [rad_to_deg(theta),max_distance,distance,horizontal_direction, horizontal_velocity, vertical_velocity])
+	
+	
+	# apply_center_impulse(impulse_vector)
+	apply_central_impulse(impulse_vector * mass)
 	
 
 
@@ -36,8 +69,10 @@ func _ready():
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey and event.pressed and event.keycode == KEY_SPACE:
-		print('start aiming with initial velocity of 5m/s')
+		print('start aiming with initial velocity of 10m/s')
 		ready_set_point = true
+		linear_velocity = Vector3.ZERO
+		angular_velocity = Vector3.ZERO
 	
 	
 	if event is InputEventMouseButton and event.pressed and event.button_index == MOUSE_BUTTON_LEFT and camera_3d != null:
@@ -47,3 +82,4 @@ func _unhandled_input(event: InputEvent) -> void:
 			end_point = get_position_from_camera(event.position)
 			if old_end_point != end_point and end_point != global_position:
 				ready_set_point = false
+				send_object(end_point, 10.0)  # Using 20 m/s
