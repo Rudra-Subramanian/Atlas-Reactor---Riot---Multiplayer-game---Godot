@@ -1,7 +1,7 @@
 extends Camera3D
 @onready var astra : CharacterBody3D = $"../character1"
 @export var player1 = astra
-@onready var tracking_character : bool = true
+@onready var tracking_character : bool = false
 @onready var no_input : bool = false
 
 

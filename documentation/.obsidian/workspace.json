@@ -13,12 +13,12 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "templates/README.md",
+                "file": "ActionClass.md",
                 "mode": "source",
                 "source": false
               },
               "icon": "lucide-file",
-              "title": "README"
+              "title": "ActionClass"
             }
           }
         ]
@@ -185,6 +185,8 @@
   },
   "active": "958ee981d58d2c25",
   "lastOpenFiles": [
-    "ActionClass.md"
+    "templates/README.md",
+    "ActionClass.md",
+    "README.md"
   ]
 }

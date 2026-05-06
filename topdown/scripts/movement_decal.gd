@@ -218,7 +218,10 @@ func final_cleanup(mesh_instance, persist_ms: float):
 
 func remove_lines():
 	for line in lines:
-		line.queue_free()
+		var index  = lines.find(line)
+		lines.remove_at(index)
+		if line != null:
+			line.queue_free()
 		
 
 

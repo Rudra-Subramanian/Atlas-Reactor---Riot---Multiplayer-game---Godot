@@ -5,7 +5,12 @@ var move_distance : float
 var action_turn : int #either 1 ,2,3 or 4 
 var movement_points : Array[Vector3]
 var action_type
-
+var ShootPoint : Vector3
+var ShootVariance: float
+var UseNode : Node3D
+var CastNode : Node3D
+var ThrowPoint : Vector3
+var ThrowDistance: float 
 
 enum ActionType {SHOOT, THROW, USE, CAST, MOVE}
 
@@ -15,6 +20,42 @@ func _set_move_distance(distance: float) -> void:
 	move_distance = distance
 func _set_action_turn(turn: int) -> void:
 	action_turn = turn
+
+
+
+func set_shoot_point(point: Vector3) -> void:
+	ShootPoint = point
+
+
+
+func set_shoot_variance(variance: float) -> void:
+	ShootVariance = variance
+
+
+
+func set_use_node(node: Node3D) -> void:
+	UseNode = node
+
+func get_use_node() -> Node3D:
+	return UseNode
+	
+func set_cast_node(node: Node3D) -> void:
+	CastNode = node
+
+
+
+func get_cast_node() -> Node3D:
+	return CastNode
+
+func set_throw_point(point: Vector3) -> void:
+	ThrowPoint = point
+
+
+
+func set_throw_distance(distance: float) -> void:
+	ThrowDistance = distance
+
+
 
 func set_movement_zero(position: Vector3):
 	movement_points = [position]

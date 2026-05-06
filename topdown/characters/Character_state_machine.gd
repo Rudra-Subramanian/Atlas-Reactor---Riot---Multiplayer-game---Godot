@@ -86,17 +86,17 @@ func initialize_actions() -> void:
 func initialize_Sprint():
 	var sprint_action = ActionBasis.new()
 	sprint_action.action_type = ActionBasis.ActionType.MOVE
-	sprint_action._set_move_speed(8)
+	sprint_action._set_move_speed(6)
 	sprint_action._set_move_distance(10)
-	sprint_action._set_action_turn((4))
+	sprint_action._set_action_turn(4)
 	sprint_action.add_movement_point(get_parent().global_position)
 	Action_list['Sprint'] = sprint_action
 	return
 
 func initialize_Walk():
 	var walk_action = ActionBasis.new()
-	walk_action.action_type = ActionBasis.ActionType.MOVE
-	walk_action._set_move_speed(5)
+	walk_action.action_type = ActionBasis.ActionType.SHOOT
+	walk_action._set_move_speed(4)
 	walk_action._set_move_distance(25/4)
 	walk_action._set_action_turn((4))
 	walk_action.add_movement_point(get_parent().global_position)
@@ -104,18 +104,132 @@ func initialize_Walk():
 	return
 	
 func initialize_Sneak():
+	var sneak_action = ActionBasis.new()
+	sneak_action.action_type = ActionBasis.ActionType.SHOOT
+	sneak_action._set_move_speed(2)
+	sneak_action._set_move_distance(15.0/4)
+	sneak_action._set_action_turn((4))
+	sneak_action.add_movement_point(get_parent().global_position)
+	Action_list['Sneak'] = sneak_action
+	
 	return
 func initialize_Peek():
+	var peek_action = ActionBasis.new()
+	peek_action.action_type = ActionBasis.ActionType.SHOOT
+	peek_action._set_move_speed(4)
+	peek_action._set_move_distance(5.0/4)
+	peek_action._set_action_turn((4))
+	peek_action.add_movement_point(get_parent().global_position)
+	Action_list['Peek'] = peek_action
 	return
 func initialize_Hold():
+	var hold_action = ActionBasis.new()
+	hold_action.action_type = ActionBasis.ActionType.SHOOT
+	hold_action._set_action_turn(3)
+	hold_action.set_shoot_point(get_parent().global_position)
+	Action_list['Hold'] = hold_action
 	return
+
 func initialize_Ability1():
+	var ability1 = ActionBasis.new()
+	ability1.action_type = ActionBasis.ActionType.THROW
+	ability1._set_action_turn(3)
+	ability1.set_throw_point(get_parent().global_position)
+	ability1.set_throw_distance(15.0)
+	Action_list['Ability1'] = ability1
 	return
+
 func initialize_Ability2():
+	var ability2 = ActionBasis.new()
+	ability2.action_type = ActionBasis.ActionType.CAST
+	ability2._set_action_turn(3)
+	ability2.set_cast_node(get_parent())
+	Action_list['Ability2'] = ability2
 	return
+
 func initialize_Ability3():
+	var ability3 = ActionBasis.new()
+	ability3.action_type = ActionBasis.ActionType.USE
+	ability3._set_action_turn(3)
+	ability3.set_use_node(get_parent())
+	Action_list['Ability3'] = ability3
 	return
+
 func initialize_Ability4():
+	var ability4 = ActionBasis.new()
+	ability4.action_type = ActionBasis.ActionType.MOVE
+	ability4._set_move_speed(8.0)
+	ability4._set_move_distance(12.0)
+	ability4._set_action_turn(2)
+	ability4.add_movement_point(get_parent().global_position)
+	Action_list['Ability4'] = ability4
+	return
+	
+	
+func reset_Sprint():
+	var sprint_action = Action_list['Sprint']
+	sprint_action.set_movement_zero(get_parent().global_position)
+	Action_list['Sprint'] = sprint_action
+	print(get_parent().global_position)
+
+func reset_Walk():
+	var walk_action = Action_list['Walk']
+	walk_action.set_movement_zero(get_parent().global_position)
+	Action_list['Walk'] = walk_action
+
+func reset_Sneak():
+	var sneak_action = Action_list['Sneak']
+	sneak_action.set_movement_zero(get_parent().global_position)
+	Action_list['Sneak'] = sneak_action
+
+func reset_Peek():
+	var peek_action = Action_list['Peek']
+	peek_action.set_movement_zero(get_parent().global_position)
+	Action_list['Peek'] = peek_action
+
+func reset_Hold():
+	var hold_action = Action_list['Hold']
+	if hold_action:
+		hold_action.set_shoot_point(get_parent().global_position)
+		Action_list['Hold'] = hold_action
+
+func reset_Ability1():
+	var ability1 = Action_list['Ability1']
+	if ability1:
+		ability1.set_throw_point(get_parent().global_position)
+		Action_list['Ability1'] = ability1
+
+func reset_Ability2():
+	var ability2 = Action_list['Ability2']
+	if ability2:
+		ability2.set_cast_node(null)
+		Action_list['Ability2'] = ability2
+
+func reset_Ability3():
+	var ability3 = Action_list['Ability3']
+	if ability3:
+		ability3.set_use_node(null)
+		Action_list['Ability3'] = ability3
+
+func reset_Ability4():
+	var ability4 = Action_list['Ability4']
+	if ability4:
+		ability4.set_movement_zero(get_parent().global_position)
+		Action_list['Ability4'] = ability4
+	
+	
+
+
+func reset_Actions():
+	TurnActions = {1: null, 2: null, 3: null, 4: null}
+	var initialize_string = 'reset_'
+	var function_to_run = Expression.new()
+	for action in Action_list:
+		#print('Action name %s - Value %s' % [action, Action_list[action]])
+		var function_string = initialize_string + action + '()'
+		function_to_run.parse(function_string)
+		function_to_run.execute([],self)
+		#print(Action_list[action])
 	return
 
 

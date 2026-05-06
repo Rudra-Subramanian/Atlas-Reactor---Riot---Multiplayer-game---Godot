@@ -87,6 +87,7 @@ func _cancel_pressed():
 	var cursor = camera_3d.get_child(0)
 	var character_position = current_character.global_position
 	var action_name = current_character.get_child(1).Current_Action
+	# GETTING CURRENT ACTION NAME
 	if  action_name == '':
 		action_name = current_character.get_child(1).Last_Action
 		if action_name == '':
@@ -95,7 +96,8 @@ func _cancel_pressed():
 	var character_final_movement_position = current_character_action.get_last_point()
 	var character_move_distance = current_character_action.get_distance_left()
 	cursor.update_show(false)
-	var initialize_string = 'current_character.get_child(1).initialize_'
+	# REINITIALIZE ACTION (Could replace with reset)
+	var initialize_string = 'current_character.get_child(1).reset_'
 	var function_to_run = Expression.new()
 	#print('Action name %s - Value %s' % [action, Action_list[action]])
 	var function_string = initialize_string + action_name + '()'
