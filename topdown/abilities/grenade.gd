@@ -14,9 +14,15 @@ func get_position_from_camera(pos):
 		return result.position
 	return global_position
 
-func send_object(end_position):
+func send_object(end_position, initial_velocity):
+	#find vector from start position to end position
+	# make sure both points are on the same y plane
+	#find distance from start point to end position (or length of vector found earlier)
+	# calculate ((V^2)/g) * (2sin(45)), if greater than max distance find impulse vector at V at 45 degrees in direction of targett
+	# if greater then theta is asin((Distance*gravity)/(2v^2))
+	#find impulse vector at V at theta degrees in direction of target
+	#apply_center_impulse(impulse_vector)
 	pass
-	#apply_impulse()
 	
 
 
